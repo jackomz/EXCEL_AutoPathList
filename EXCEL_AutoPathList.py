@@ -21,13 +21,13 @@ Dateiname = "Liste.xlsx"
 wb = Workbook()
 ws = wb.active
 
-ws['A1'] = "Dateipfad"
+ws['A1'] = "Path"
 ws['B1'] = "Name"
-ws['C1'] = "Größe in GiB"
-ws['D1'] = "Größe in GB"
+ws['C1'] = "Size in GiB"
+ws['D1'] = "Size in GB"
 
 
-ListenPfad = tempdir + "/" + Dateiname
+ListPath = tempdir + "/" + Dateiname
 
 if len(tempdir) > 0:
     print ("You chose %s" % tempdir)
@@ -44,19 +44,19 @@ for subFolder in os.listdir(tempdir):
     i += 1
 
 
-SummenZeile = "A"+str(i+1)+":B"+str(i+1)
-SumZelleGib = "C"+str(i+1)
-SumZelleGb = "D"+str(i+1)
+SumCell = "A"+str(i+1)+":B"+str(i+1)
+SumCellGiB = "C"+str(i+1)
+SumCellGB = "D"+str(i+1)
 
-ws['A'+str(i+1)] = "Summe: "
-ws[SumZelleGib] = "=Sum(C2:C"+str(i-1)+")"
-ws[SumZelleGb] = "=Sum(D2:D"+str(i-1)+")"
-ws.merge_cells(SummenZeile)
+ws['A'+str(i+1)] = "Sum: "
+ws[SumCellGiB] = "=Sum(C2:C"+str(i-1)+")"
+ws[SumCellGB] = "=Sum(D2:D"+str(i-1)+")"
+ws.merge_cells(SumCell)
     
-wb.save(ListenPfad)
-StartEXCELFile = "start EXCEL.EXE " + ListenPfad
+wb.save(ListPath)
+StartEXCELFile = "start EXCEL.EXE " + ListPath
 os.system(StartEXCELFile)
-print("Liste wurde generiert! Dateipfad lautet: \n\t" + ListenPfad)
+print("List got generated! Location: \n\t" + ListPath)
 
 
 
